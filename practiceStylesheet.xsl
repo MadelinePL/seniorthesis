@@ -7,6 +7,7 @@
                 <xsl:with-param name="select" select="/tei:TEI/@xml:id"/>
             </xsl:call-template>
             <xsl:text>&#09;</xsl:text>
+            <!--OUTPUTS THE EVENT DEPOSITION-->
             <xsl:call-template name="value-of-template">
                 <xsl:with-param name="select" select="normalize-space(.)"/>
             </xsl:call-template>
