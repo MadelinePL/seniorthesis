@@ -17,7 +17,6 @@
             <xsl:value-of select="'&#10;'"/>
         </xsl:for-each>
     </xsl:template>
-    ASS
     <xsl:template name="value-of-template">
         <xsl:param name="select"/>
         <xsl:value-of select="$select"/>
@@ -27,3 +26,4 @@
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>
+ASS
