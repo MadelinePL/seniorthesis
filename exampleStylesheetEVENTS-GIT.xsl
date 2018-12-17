@@ -4,6 +4,8 @@
     <xsl:template match="/">
         <xsl:for-each select="//tei:body//tei:seg[@subtype='event']">
             
+            <xsl:variable name="xmlID" select="@xml:id"></xsl:variable>
+            
             <!--OUTPUTS MANUSCRIPT ID-->
             <xsl:call-template name="value-of-template">
                 <xsl:with-param name="select" select="/tei:TEI/@xml:id"/>
@@ -13,6 +15,12 @@
             <xsl:text>&#09;</xsl:text>
             <xsl:call-template name="value-of-template">
                 <xsl:with-param name="select" select="normalize-space(.)"/>
+            </xsl:call-template>
+            
+            <!--OUTPUTS ENGLISH DEPOSITION-->
+            <xsl:text>&#09;</xsl:text>
+            <xsl:call-template name="value-of-template">
+                <xsl:with-param name="select" select="normalize-space(//tei:seg[@type='trans' and @corresp=concat('#',$xmlID)])"/>
             </xsl:call-template>
             
             <!--OUTPUTS LATIN DATE-->
@@ -38,6 +46,13 @@
             <xsl:call-template name="value-of-template">
                 <xsl:with-param name="select" select="normalize-space(tei:placeName[@type='event_loc']/@nymRef)"/>
             </xsl:call-template>
+            
+            <!--Note: JPR's documents seem to imply that he tagged the place types, but that doesn't seem to be the case in the actual XML. See his readme/JPR's website: encoding the digital edition
+            <xsl:text>&#09;</xsl:text>
+            <xsl:call-template name="value-of-template">
+                <xsl:with-param name="select" select="/seg/placeName/@type"/>
+            </xsl:call-template>-->
+            
             
             <xsl:value-of select="'&#10;'"/>
         </xsl:for-each>
