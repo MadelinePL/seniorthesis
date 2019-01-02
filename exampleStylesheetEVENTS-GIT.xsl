@@ -4,6 +4,7 @@
     <xsl:template match="/">
         <xsl:for-each select="//tei:body//tei:seg[@subtype='event']">
             
+            <!--VARIABLE FOR XMLID-->
             <xsl:variable name="xmlID" select="@xml:id"></xsl:variable>
             
             <!--OUTPUTS MANUSCRIPT ID-->
@@ -17,7 +18,7 @@
                 <xsl:with-param name="select" select="normalize-space(.)"/>
             </xsl:call-template>
             
-            <!--OUTPUTS ENGLISH DEPOSITION-->
+            <!--OUTPUTS ENGLISH TRANSLATION-->
             <xsl:text>&#09;</xsl:text>
             <xsl:call-template name="value-of-template">
                 <xsl:with-param name="select" select="normalize-space(//tei:seg[@type='trans' and @corresp=concat('#',$xmlID)])"/>

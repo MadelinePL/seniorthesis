@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:exslt="http://exslt.org/common" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:_="http://www.tei-c.org/ns/1.0" xmlns:DEFAULT="http://www.tei-c.org/ns/1.0" version="1.0" extension-element-prefixes="exslt">
     <xsl:output omit-xml-declaration="yes" indent="no"/>
     <xsl:template match="/">
-        <xsl:for-each select="//tei:body//tei:seg[@subtype='belief']">
+        <xsl:for-each select="//tei:body//tei:seg[@subtype='sighting']">
             
             <!--VARIABLE FOR XMLID-->
             <xsl:variable name="xmlID" select="@xml:id"></xsl:variable>
@@ -24,41 +24,36 @@
                 <xsl:with-param name="select" select="normalize-space(//tei:seg[@type='trans' and @corresp=concat('#',$xmlID)])"/>
             </xsl:call-template>
             
-            <!--OUTPUTS LATIN DATE (start)-->
+            <!--OUTPUTS LATIN DATE-->
             <xsl:text>&#09;</xsl:text>
             <xsl:call-template name="value-of-template">
-                <xsl:with-param name="select" select="normalize-space(tei:seg[@type='hist_bel']/tei:date[@type='prev_bel_start'])"/>
+                <xsl:with-param name="select" select="normalize-space(tei:date[@type='event_date'])"/>
             </xsl:call-template>
             
-            <!--OUTPUTS LATIN DATE (end)-->
+            <!--OUTPUTS DATE (year)-->
             <xsl:text>&#09;</xsl:text>
             <xsl:call-template name="value-of-template">
-                <xsl:with-param name="select" select="normalize-space(tei:seg[@type='hist_bel']/tei:date[@type='prev_bel_end'])"/>
+                <xsl:with-param name="select" select="tei:date[@type='event_date']/@when"/>
             </xsl:call-template>
             
-            <!--OUTPUTS DATE (start year)-->
+            <!--OUTPUTS LATIN LOCATION-->
             <xsl:text>&#09;</xsl:text>
             <xsl:call-template name="value-of-template">
-                <xsl:with-param name="select" select="normalize-space(tei:seg[@type='hist_bel']/tei:date[@type='prev_bel_start']/@when)"/>
+                <xsl:with-param name="select" select="normalize-space(tei:placeName[@type='event_loc'])"/>
             </xsl:call-template>
             
-            <!--OUTPUTS DATE (end year)-->
+            <!--OUTPUTS LOCATION TAG-->
             <xsl:text>&#09;</xsl:text>
             <xsl:call-template name="value-of-template">
-                <xsl:with-param name="select" select="normalize-space(tei:seg[@type='hist_bel']/tei:date[@type='prev_bel_end']/@when)"/>
+                <xsl:with-param name="select" select="normalize-space(tei:placeName[@type='event_loc']/@nymRef)"/>
             </xsl:call-template>
             
-            <!--OUTPUTS LATIN CONFESSION-->
+            <!--Note: JPR's documents seem to imply that he tagged the place types, but that doesn't seem to be the case in the actual XML. See his readme/JPR's website: encoding the digital edition
             <xsl:text>&#09;</xsl:text>
             <xsl:call-template name="value-of-template">
-                <xsl:with-param name="select" select="normalize-space(tei:seg[@type='conf'])"/>
-            </xsl:call-template>
+                <xsl:with-param name="select" select="/seg/placeName/@type"/>
+            </xsl:call-template>-->
             
-            <!--OUTPUTS CONFESSION TAGS-->
-            <xsl:text>&#09;</xsl:text>
-            <xsl:call-template name="value-of-template">
-                <xsl:with-param name="select" select="normalize-space(tei:seg[@type='conf']/@ana)"/>
-            </xsl:call-template>
             
             <xsl:value-of select="'&#10;'"/>
         </xsl:for-each>

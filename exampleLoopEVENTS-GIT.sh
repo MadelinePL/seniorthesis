@@ -1,4 +1,4 @@
-# shell script that runs through all of the manuscript XML files, and applies the exampleStylesheetGIT.xsl stylesheet
+# shell script that runs through all of the manuscript XML files, and applies the exampleStylesheetEVENTS-GIT.xsl stylesheet
 rm exampleOutEVENTS-GIT.tsv;
 for f in MS*.xml;
     do
