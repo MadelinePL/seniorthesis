@@ -14,5 +14,8 @@ In addition to converting the TSV files into CSV files, I also converted the TSV
 SQL Files:
 There were instances where I queried my data using SQL, which required me to copy the data into SQL databases. This folder is also where I will save copies of the SQL queries I ran. 
 
+Tableau Workbooks:
+I got a copy of Tableau Desktop for students, so I decided to do my data visualization with Tableau. This folder is where I am keeping my workbooks. Note: the files are in XML when uploaded to GitHub. 
+
 Misc.:
 All other documents I created during the course of this project go here.
