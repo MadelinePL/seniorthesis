@@ -48,16 +48,28 @@
                 <xsl:with-param name="select" select="normalize-space(tei:seg[@type='hist_bel']/tei:date[@type='prev_bel_end']/@when)"/>
             </xsl:call-template>
             
-            <!--OUTPUTS LATIN CONFESSION-->
+            <!--OUTPUTS LATIN CONFESSION (beliefs about heretics)-->
             <xsl:text>&#09;</xsl:text>
             <xsl:call-template name="value-of-template">
                 <xsl:with-param name="select" select="normalize-space(tei:seg[@type='conf'])"/>
             </xsl:call-template>
             
-            <!--OUTPUTS CONFESSION TAGS-->
+            <!--OUTPUTS CONFESSION TAGS (beliefs about heretics)-->
             <xsl:text>&#09;</xsl:text>
             <xsl:call-template name="value-of-template">
                 <xsl:with-param name="select" select="normalize-space(tei:seg[@type='conf']/@ana)"/>
+            </xsl:call-template>
+            
+            <!--OUTPUTS LATIN CONFESSION (heard errors)-->
+            <xsl:text>&#09;</xsl:text>
+            <xsl:call-template name="value-of-template">
+                <xsl:with-param name="select" select="normalize-space(tei:seg[@type='conf'][@subtype='heard_error'])"/>
+            </xsl:call-template>
+            
+            <!--OUTPUTS CONFESSION TAGS (heard errors)-->
+            <xsl:text>&#09;</xsl:text>
+            <xsl:call-template name="value-of-template">
+                <xsl:with-param name="select" select="normalize-space(tei:seg[@type='conf'][@subtype='heard_error']/@ana)"/>
             </xsl:call-template>
             
             <xsl:value-of select="'&#10;'"/>
